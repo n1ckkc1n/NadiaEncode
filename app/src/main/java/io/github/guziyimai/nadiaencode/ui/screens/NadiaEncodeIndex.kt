@@ -1,13 +1,10 @@
 package io.github.guziyimai.nadiaencode.ui.screens
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
-import android.graphics.Bitmap
 import android.util.Log
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
-import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
@@ -34,7 +31,7 @@ import io.github.guziyimai.nadiaencode.utils.WebUtils
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun NadiaEncodeIndex(
-    url:String,
+    url: String,
     modifier: Modifier = Modifier
 ) {
     val url = "file:///android_asset/NadiaEncodeOffline/index.html"
@@ -81,13 +78,16 @@ fun NadiaEncodeIndex(
     }
 }
 
-class IndexWebClient(private val ctx: Context): AccompanistWebViewClient() {
+class IndexWebClient(private val ctx: Context) : AccompanistWebViewClient() {
     override fun shouldOverrideUrlLoading(
         view: WebView?,
         request: WebResourceRequest?
     ): Boolean {
-        Log.d("requestUrl", request?.url.toString())
-        WebUtils.openLinkInBrowser(ctx,request?.url.toString())
+        val url = request?.url.toString()
+        Log.d("requestUrl", url)
+        if (url.startsWith("file:///"))
+            return super.shouldOverrideUrlLoading(view, request)
+        WebUtils.openLinkInBrowser(ctx, request?.url.toString())
         return true
     }
 }
