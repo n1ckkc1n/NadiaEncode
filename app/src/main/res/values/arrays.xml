@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="url_list">
+        <item>
+            https://nadia-jiami.netlify.app
+        </item>
+        <item>
+            https://nadia-encode.neocities.org
+        </item>
+        <item>
+            https://guziyimai.github.io/nadia-encode
+        </item>
+    </string-array>
+</resources>
